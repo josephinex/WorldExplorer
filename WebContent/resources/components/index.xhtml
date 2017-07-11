@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+	<style media="screen" type="text/css">
+@import
+"../css/style.css"
+</style>
+
+</h:head>
+
+<h:body>
+	<section>
+	<p>Welcome to World Explorer!</p>
+	<h:form class="formTable">
+		<p class="tcell">
+			<label>Enter a city name to find the countries this city name
+				is in:</label>
+		</p>
+
+		<p class="tcell">
+			<h:inputText class="left" value="#{country_by_cityname.cityName}" required="true"/>
+			<h:commandButton class="btn left" value="Send"
+				action="#{country_by_cityname.submit}" />
+		</p>
+
+		<ul class="listContainer" style="#{not empty country_by_cityname.countryNames ? 'display: table-cell' : ''}">
+			<ui:repeat value="#{country_by_cityname.countryNames}" var="item">
+				<li>#{item}</li>
+			</ui:repeat>
+		</ul>
+
+	</h:form> <h:form class="formTable">
+		<p class="tcell">
+			<label>Enter a country code to find out the country name:</label>
+		</p>
+		<p class="tcell">
+			<h:inputText class="left" value="#{country_by_countrycode.countryCode}" required="true"/>
+			<h:commandButton class="btn left" value="Send" action="#{country_by_countrycode.submit}" />
+		</p>
+
+		<ul class="listContainer" style="#{not empty country_by_countrycode.countryNames ? 'display: table-cell' : ''}">
+			<ui:repeat value="#{country_by_countrycode.countryNames}" var="item">
+				<li>#{item}</li>
+			</ui:repeat>
+		</ul>
+
+	</h:form> <h:form class="formTable">
+		<p class="tcell">
+			<label>Enter a country to see some of its major cities:</label>
+		</p>
+		<p class="tcell">
+			<h:inputText class="left" value="#{cities_by_countryname.countryName}" required="true"/>
+			<h:commandButton class="btn left" value="Send" action="#{cities_by_countryname.submit}"/>
+		</p>
+
+		<ul class="listContainer" style="#{not empty cities_by_countryname.cityNames ? 'display: table-cell' : ''}">
+			<ui:repeat value="#{cities_by_countryname.cityNames}" var="item">
+				<li>#{item}</li>
+			</ui:repeat>
+		</ul>
+
+	</h:form> </section>
+</h:body>
+
+</html>

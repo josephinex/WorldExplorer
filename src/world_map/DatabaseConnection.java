@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class DatabaseConnection {
-	private static final String url = "jdbc:postgresql://localhost:5432/world";
-	private static final String username = "tania";
+	private static final String url = ""; //your path to jdbc driver
+	private static final String username = ""; //your username
 	private static final String password = "";
 
 	private String query = "";
