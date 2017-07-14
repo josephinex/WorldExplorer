@@ -1,27 +1,28 @@
 package javabeans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import world_map.DatabaseExtraction;
-
 
 @ManagedBean(name="country_by_cityname", eager=true)
 @RequestScoped
-public class CountryByCityNameBean {
+public class CountryByCityNameBean implements Serializable{
+
+	private static final long serialVersionUID = 4191174360088849685L;
 
 	@ManagedProperty(value="#{countryCNBean}")
 	private CountryCNBean countryCNBean;
 	
+	private String cityName = "";
+	private List<String> countryNames = null; 
+	
 	public void setCountryCNBean(CountryCNBean countryCNBean) {
 		this.countryCNBean = countryCNBean;
 	}
-
-	private String cityName = "";
-	private List<String> countryNames = null; 
 	
 	public String getCityName() {
 		return cityName;

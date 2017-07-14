@@ -1,5 +1,6 @@
 package javabeans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -8,8 +9,10 @@ import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name="cities_by_countryname", eager=true)
 @RequestScoped
-public class CitiesByCountryNameBean {
+public class CitiesByCountryNameBean implements Serializable{
 	
+	private static final long serialVersionUID = -5968364876481791011L;
+
 	@ManagedProperty(value="#{citiesCNBean}")
 	private CitiesCNBean citiesCNBean;
 	
