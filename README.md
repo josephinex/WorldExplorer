@@ -7,6 +7,6 @@ Technologies used:
 3. JDBC
 4. Glassfish 4/Tomcat
 5. Managed Beans
-6. PostgreSQL 42.1.1
+6. PostgreSQL 9.6.3
 
 
