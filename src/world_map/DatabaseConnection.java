@@ -2,16 +2,13 @@ package world_map;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class DatabaseConnection {
-	private static final String url = ""; //your path to jdbc driver
-	private static final String username = ""; //your username
-	private static final String password = "";
-
+public abstract class DatabaseConnection {	
+	private Connection connection;
+	
 	private String query = "";
 	private Object[] params;
 	private Class<Object>[] types;
@@ -28,45 +25,9 @@ public abstract class DatabaseConnection {
 	}
 
 	/**
-	 * This function opens a new connection
-	 * 
-	 * @return connection
-	 */
-	public Connection openConnection() {
-		try {
-			Class.forName("org.postgresql.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		Connection connection = null;
-
-		try {
-			connection = DriverManager.getConnection(url, username, password);
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return connection;
-	}
-
-	/**
-	 * This function closes an open connection
-	 * 
-	 */
-	public void closeConnection(Connection connection) {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * 
 	 */
 	public ResultSet execute() {
-		Connection connection = openConnection();
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -87,6 +48,14 @@ public abstract class DatabaseConnection {
 			e.printStackTrace();
 		}
 		return resultSet;
+	}
+
+	public Connection getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Connection connection) {
+		this.connection = connection;
 	}
 
 }

@@ -1,17 +1,26 @@
-package world_map;
+package javabeans;
 
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+
+import world_map.DatabaseExtraction;
 
 
 @ManagedBean(name="country_by_cityname", eager=true)
 @RequestScoped
 public class CountryByCityNameBean {
 
+	@ManagedProperty(value="#{countryCNBean}")
+	private CountryCNBean countryCNBean;
+	
+	public void setCountryCNBean(CountryCNBean countryCNBean) {
+		this.countryCNBean = countryCNBean;
+	}
+
 	private String cityName = "";
-	private String countryName = "";
 	private List<String> countryNames = null; 
 	
 	public String getCityName() {
@@ -20,14 +29,6 @@ public class CountryByCityNameBean {
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
-	}
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
 	}
 
 	public List<String> getCountryNames() {
@@ -39,7 +40,7 @@ public class CountryByCityNameBean {
 	}
 
 	public void submit(){
-		List<String> countryNames = DatabaseExtraction.getCountryByCityName(cityName);
+		List<String> countryNames = countryCNBean.getCountryByCityName(cityName);
 		setCountryNames(countryNames);
 	}
 	
