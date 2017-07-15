@@ -1,4 +1,4 @@
-package world_map;
+package dto;
 
 public class Region {
 	private long Id;

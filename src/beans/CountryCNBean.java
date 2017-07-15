@@ -1,4 +1,4 @@
-package javabeans;
+package beans;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import world_map.Utilities;
+import utils.Utilities;
 
 @ManagedBean(name = "countryCNBean", eager = true)
 @SessionScoped
