@@ -9,4 +9,6 @@ Technologies used:
 5. Managed Beans
 6. PostgreSQL 9.6.3
 
+This is how the app looks in Chrome:
+
 ![Alt text](/images/WorldExplorer.png?raw=true "WorldExplorer UI")
