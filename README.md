@@ -9,4 +9,4 @@ Technologies used:
 5. Managed Beans
 6. PostgreSQL 9.6.3
 
-![Alt text](/WorldExplorer/images/WorldExplorer.png?raw=true "WorldExplorer UI")
+![Alt text](/images/WorldExplorer.png?raw=true "WorldExplorer UI")
