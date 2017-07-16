@@ -1,4 +1,4 @@
-package beans;
+package connection;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -30,8 +30,8 @@ public abstract class DataSourceConnection implements Serializable{
 			throw new RuntimeException("Parameter count and types lengths did not match");
 		}
 		this.query = query;
-		this.types = types;
 		this.params = params;
+		this.types = types;
 	}
 
 	public void setParams(Object[] params) {

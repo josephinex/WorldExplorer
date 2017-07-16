@@ -5,8 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.DataSourceConnection;
-import dto.World;
+import connection.DataSourceConnection;
 
 public class Utilities extends DataSourceConnection {
 	
@@ -16,7 +15,7 @@ public class Utilities extends DataSourceConnection {
 		super(query, params, types);
 	}
 
-	public List<String> populateList(ResultSet resultSet, World<Object> dtoClass) throws SQLException {
+	public List<String> populateList(ResultSet resultSet) throws SQLException {
 		List<String> list = new ArrayList<>();
 		while (resultSet.next()) {
 			for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {

@@ -7,22 +7,38 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
+import dao.CountryDao;
+import dto.CountryDto;
+
 @ManagedBean(name = "country_by_countrycode", eager = true)
 @SessionScoped
-public class CountryByCountryCodeBean implements Serializable{
+public class CountryByCountryCodeBean implements Serializable {
 
 	private static final long serialVersionUID = 2132958178296290274L;
 
-	@ManagedProperty(value="#{countryCCBean}")
-	private CountryCCBean countryCCBean;
+	@ManagedProperty(value = "#{countryDao}")
+	private CountryDao countryDao;
 
-	private String countryCode = "";
-	private List<String> countryNames = null;
+	private String countryCode;
+	private List<String> countryNames;
+	private String countryName;
 
-	public void setCountryCCBean(CountryCCBean countryCCBean) {
-		this.countryCCBean = countryCCBean;
+	public CountryDao getCountryDao() {
+		return countryDao;
 	}
-	
+
+	public void setCountryDao(CountryDao countryDao) {
+		this.countryDao = countryDao;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
 	public String getCountryCode() {
 		return countryCode;
 	}
@@ -40,8 +56,8 @@ public class CountryByCountryCodeBean implements Serializable{
 	}
 
 	public void submit() {
-		List<String> countryNames = countryCCBean.fetchCountryByCountryCode(countryCode);
-		setCountryNames(countryNames);
+		CountryDto countryDto = countryDao.fetchCountryByCountryCode(countryCode);
+		setCountryNames(countryDto.getCountryNames());
 	}
 
 }

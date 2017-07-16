@@ -7,42 +7,48 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-@ManagedBean(name="cities_by_countryname", eager=true)
+import dao.CountryAndCityJoinDao;
+import dto.CityDto;
+
+@ManagedBean(name = "cities_by_countryname", eager = true)
 @RequestScoped
-public class CitiesByCountryNameBean implements Serializable{
-	
+public class CitiesByCountryNameBean implements Serializable {
+
 	private static final long serialVersionUID = -5968364876481791011L;
 
-	@ManagedProperty(value="#{citiesCNBean}")
-	private CitiesCNBean citiesCNBean;
-	
+	@ManagedProperty(value = "#{countryAndCityJoinDao}")
+	private CountryAndCityJoinDao countryAndCityJoinDao;
+
 	private String countryName = "";
 	private List<String> cityNames = null;
-	
-	
-	public void setCitiesCNBean(CitiesCNBean citiesCNBean) {
-		this.citiesCNBean = citiesCNBean;
+
+	public CountryAndCityJoinDao getCountryAndCityJoinDao() {
+		return countryAndCityJoinDao;
 	}
-	
+
+	public void setCountryAndCityJoinDao(CountryAndCityJoinDao countryAndCityJoinDao) {
+		this.countryAndCityJoinDao = countryAndCityJoinDao;
+	}
+
 	public String getCountryName() {
 		return countryName;
 	}
-	
+
 	public void setCountryName(String countryName) {
 		this.countryName = countryName;
 	}
-	
+
 	public List<String> getCityNames() {
 		return cityNames;
 	}
-	
+
 	public void setCityNames(List<String> cityNames) {
 		this.cityNames = cityNames;
 	}
-	
-	public void submit(){
-		List<String> cityNames = citiesCNBean.fetchCitiesByCountryName(countryName);
-		setCityNames(cityNames);
+
+	public void submit() {
+		CityDto cityDto = countryAndCityJoinDao.fetchCitiesByCountryName(countryName);
+		setCityNames(cityDto.getCityNames());
 	}
 
 }

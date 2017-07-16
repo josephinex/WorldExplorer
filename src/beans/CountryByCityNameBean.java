@@ -7,23 +7,40 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
+import dao.CityDao;
+import dto.CityDto;
 
-@ManagedBean(name="country_by_cityname", eager=true)
+@ManagedBean(name = "country_by_cityname", eager = true)
 @RequestScoped
-public class CountryByCityNameBean implements Serializable{
+public class CountryByCityNameBean implements Serializable {
 
 	private static final long serialVersionUID = 4191174360088849685L;
 
-	@ManagedProperty(value="#{countryCNBean}")
-	private CountryCNBean countryCNBean;
-	
-	private String cityName = "";
-	private List<String> countryNames = null; 
-	
-	public void setCountryCNBean(CountryCNBean countryCNBean) {
-		this.countryCNBean = countryCNBean;
+	@ManagedProperty(value = "#{cityDao}")
+	private CityDao cityDao;
+
+	private String cityName;
+	private List<String> cityNames;
+
+	private List<String> countryCodes;
+	private String countryName;
+
+	public CityDao getCityDao() {
+		return cityDao;
 	}
-	
+
+	public void setCityDao(CityDao cityDao) {
+		this.cityDao = cityDao;
+	}
+
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
 	public String getCityName() {
 		return cityName;
 	}
@@ -32,17 +49,26 @@ public class CountryByCityNameBean implements Serializable{
 		this.cityName = cityName;
 	}
 
-	public List<String> getCountryNames() {
-		return countryNames;
+	public List<String> getCityNames() {
+		return cityNames;
 	}
 
-	public void setCountryNames(List<String> countryNames) {
-		this.countryNames = countryNames;
+	public void setCityNames(List<String> cityNames) {
+		this.cityNames = cityNames;
 	}
 
-	public void submit(){
-		List<String> countryNames = countryCNBean.getCountryByCityName(cityName);
-		setCountryNames(countryNames);
+	public List<String> getCountryCodes() {
+		return countryCodes;
 	}
-	
+
+	public void setCountryNames(List<String> countryCodes) {
+		this.countryCodes = countryCodes;
+	}
+
+	public void submit() {
+		CityDto cityDto = cityDao.getCountryByCityName(cityName);
+		setCountryNames(cityDto.getCountryCodes());
+		setCityNames(cityDto.getCityNames());
+	}
+
 }
