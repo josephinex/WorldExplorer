@@ -1,15 +1,15 @@
 package dto;
 
 public class SubregionDto {
-	private long Id;
+	private long id;
 	private String subregionName;
 
-	public long getId() {
-		return Id;
+	public long getid() {
+		return id;
 	}
 
-	public void setId(long id) {
-		Id = id;
+	public void setid(long id) {
+		this.id = id;
 	}
 
 	public String getSubregionName() {
