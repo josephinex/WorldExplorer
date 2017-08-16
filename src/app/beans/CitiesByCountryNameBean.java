@@ -7,26 +7,41 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import app.entities.City;
-import app.repositories.CityRepository;
+import app.service.RegistrationService;
 
 @ManagedBean(name = "cities_by_countryname", eager = true)
-@RequestScoped
+@ViewScoped
 public class CitiesByCountryNameBean implements Serializable {
 
-	@ManagedProperty(value = "#{CityRepository}")
-	CityRepository cityRepository;
+	/*@ManagedProperty(value = "#{CityRepository}")
+	CityRepository cityRepository;*/
+	
+	private static final long serialVersionUID = 4272845871439410995L;
 
-	public CityRepository getCityRepository() {
+	@ManagedProperty(value="#{RegistrationService}")
+	private RegistrationService service;
+
+	/*public CityRepository getCityRepository() {
 		return cityRepository;
 	}
 
 	public void setCityRepository(CityRepository cityRepository) {
 		this.cityRepository = cityRepository;
+	}*/
+
+	public RegistrationService getService() {
+		return service;
 	}
 
-	private String countryName = "";
+	public void setService(RegistrationService service) {
+		this.service = service;
+	}
+
+	private String countryName;
+	
 	private List<String> cityNames = null;
 
 	public String getCountryName() {
@@ -46,7 +61,12 @@ public class CitiesByCountryNameBean implements Serializable {
 	}
 
 	public void submit() {
-		List<City> cities = cityRepository.findByCountryName(getCountryName());
+		if(service == null) {
+			System.out.println("Service is : " + service);
+			//System.out.println("City repo : " + service.getCityRepository());
+			return;
+		}
+		List<City> cities = service.getCityRepository().findByCountryName(getCountryName());
 
 		List<String> cityNames = new ArrayList<>();
 
