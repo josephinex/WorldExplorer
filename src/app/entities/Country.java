@@ -1,18 +1,18 @@
 package app.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "countries")
-public class Country {
+public class Country implements Serializable{
 
 	@Id
 	@GeneratedValue
@@ -34,13 +34,40 @@ public class Country {
 	@Column(name = "tld")
 	private String topLevelDomain;
 
-	@Column(name = "country_code")
+	@Column(name = "country_code", nullable = false)
 	private String countryCode;
 	
-	@OneToMany
-	@JoinColumn(name="country_code")
-	List<City> cities;
+	@OneToMany(mappedBy="country")
+	private List<City> cities;
 	
+
+	public List<City> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<City> cities) {
+		this.cities = cities;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCountryCodeIso(String countryCodeIso) {
+		this.countryCodeIso = countryCodeIso;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+
+	public void setTopLevelDomain(String topLevelDomain) {
+		this.topLevelDomain = topLevelDomain;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 
 	public long getId() {
 		return id;

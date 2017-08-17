@@ -1,18 +1,18 @@
 package app.entities;
 
-import java.util.List;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "cities")
-public class City {
+public class City implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -21,12 +21,12 @@ public class City {
 	@Column(name = "full_name")
 	private String cityName;
 
-	@Column(name = "country_code")
+	@Column(name = "country_code",insertable=false, updatable=false, nullable = false)
 	public String countryCode;
 	
-	@OneToMany
-	@JoinColumn(name="country_code")
-	List<Country> countries;
+	@ManyToOne
+	@JoinColumn(name="country_code", referencedColumnName = "country_code")
+	private Country country;
 
 	public long getId() {
 		return id;
@@ -38,6 +38,26 @@ public class City {
 
 	public String getCityName() {
 		return cityName;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 
 }
