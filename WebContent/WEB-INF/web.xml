@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>World Countries and Cities</display-name>
 	<!-- Add Support for Spring -->
- 
+
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 		<welcome-file>index.html</welcome-file>
@@ -30,7 +30,4 @@
 		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
 		<param-value>resources.application</param-value>
 	</context-param>
-	<listener>
-		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-	</listener>
 </web-app>

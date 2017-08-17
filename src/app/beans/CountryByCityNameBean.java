@@ -1,13 +1,15 @@
 package app.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import app.entities.City;
+import app.entities.Country;
+import app.service.CountryRegistrationService;
 
 @ManagedBean(name = "country_by_cityname", eager = true)
 @RequestScoped
@@ -15,29 +17,18 @@ public class CountryByCityNameBean implements Serializable {
 
 	private static final long serialVersionUID = 4191174360088849685L;
 
-	//@ManagedProperty(value = "#{cityDao}")
-	//private CityDao cityDao;
+	@ManagedProperty(value = "#{CountryRegistrationService}")
+	private CountryRegistrationService service;
 
 	private String cityName;
-	private List<String> cityNames;
-
 	private List<String> countryCodes;
-	private String countryName;
 
-/*	public CityDao getCityDao() {
-		return cityDao;
+	public CountryRegistrationService getService() {
+		return service;
 	}
 
-	public void setCityDao(CityDao cityDao) {
-		this.cityDao = cityDao;
-	}*/
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
+	public void setService(CountryRegistrationService service) {
+		this.service = service;
 	}
 
 	public String getCityName() {
@@ -48,26 +39,25 @@ public class CountryByCityNameBean implements Serializable {
 		this.cityName = cityName;
 	}
 
-	public List<String> getCityNames() {
-		return cityNames;
-	}
-
-	public void setCityNames(List<String> cityNames) {
-		this.cityNames = cityNames;
-	}
-
 	public List<String> getCountryCodes() {
 		return countryCodes;
 	}
 
-	public void setCountryNames(List<String> countryCodes) {
+	public void setCountryCodes(List<String> countryCodes) {
 		this.countryCodes = countryCodes;
 	}
 
-	/*public void submit() {
-		City city = cityDao.getCountryByCityName(cityName);
-		setCountryNames(city.getCountryCodes());
-		setCityNames(city.getCityNames());
-	}*/
+	public void submit() {
+
+		List<Country> countries = service.getCountryRepository().findByCityName(getCityName());
+
+		List<String> countryCodes = new ArrayList<>();
+
+		for (Country c : countries) {
+			countryCodes.add(c.getCountryName());
+		}
+
+		setCountryCodes(countryCodes);
+	}
 
 }
