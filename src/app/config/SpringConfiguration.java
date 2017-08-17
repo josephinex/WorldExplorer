@@ -39,6 +39,9 @@ public class SpringConfiguration {
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		jpaProperties.put("hibernate.hbm2ddl.auto", "none");
+		jpaProperties.put("hibernate.show_sql", "true");
+		jpaProperties.put("hibernate.format_sql", "true");
+		
 
 		LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
 		entityManagerFactory.setDataSource(dataSource());
@@ -50,12 +53,6 @@ public class SpringConfiguration {
 		return entityManagerFactory.getObject();
 	}
 
-	/*
-	 * public PlatformTransactionManager transactionManager() {
-	 * JpaTransactionManager txManager = new JpaTransactionManager();
-	 * txManager.setEntityManagerFactory(entityManagerFactory()); return txManager;
-	 * }
-	 */
 	@Bean
 	public JpaTransactionManager transactionManager(DataSource dataSource, EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager(entityManagerFactory);
