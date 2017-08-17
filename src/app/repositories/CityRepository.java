@@ -11,7 +11,7 @@ import app.entities.City;
 @Repository
 public interface CityRepository extends ReadOnlyRepository<City, Long>{
 	
-	@Query("select ci from City ci join ci.countries country where country.countryName = :countryName ")
+	@Query("select ci from City ci join ci.country c where c.countryName = :countryName ")
 	public List<City> findByCountryName(@Param("countryName") String countryName);
 	
 }
