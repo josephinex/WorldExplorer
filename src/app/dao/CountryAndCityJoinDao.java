@@ -1,4 +1,5 @@
-package dao;
+package app.dao;
+/*package app.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import dto.CityDto;
+import app.entities.City;
 import utils.RowMapper;
 import utils.Utilities;
 
@@ -23,21 +24,21 @@ public class CountryAndCityJoinDao extends Utilities implements RowMapper{
 		super(request, null, new Class[] { String.class });
 	}
 	
-	/**
+	*//**
 	 * The function returns a list of cities from the database when user enters
 	 * country name
 	 * 
 	 * @param countryName
 	 *            name of the country
 	 * @return list of strings
-	 */
-	public CityDto fetchCitiesByCountryName(String countryName) {
+	 *//*
+	public City fetchCitiesByCountryName(String countryName) {
 		countryName.toLowerCase();
 		countryName = countryName.substring(0, 1).toUpperCase() + countryName.substring(1);
 	
 		this.setParams(new Object[] { new String(countryName) });
 		ResultSet rs = this.execute();
-		CityDto city = null;
+		City city = null;
 
 		try {
 			city = this.mapRow(rs);
@@ -49,8 +50,8 @@ public class CountryAndCityJoinDao extends Utilities implements RowMapper{
 	
 	
 	@Override
-	public CityDto mapRow(ResultSet resultSet) throws SQLException {
-		CityDto city = new CityDto();
+	public City mapRow(ResultSet resultSet) throws SQLException {
+		City city = new City();
 		
 		List<String> listOfCityNames = new ArrayList<>();
 		
@@ -62,3 +63,4 @@ public class CountryAndCityJoinDao extends Utilities implements RowMapper{
 		return city;
 	}
 }
+*/

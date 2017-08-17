@@ -1,4 +1,5 @@
-package dao;
+package app.dao;
+/*package app.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +8,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import dto.CityDto;
+import app.entities.City;
 import utils.RowMapper;
 import utils.Utilities;
 
@@ -22,7 +23,7 @@ public class CityDao extends Utilities implements RowMapper {
 		super(request, null, new Class[] { String.class });
 	}
 
-	/**
+	*//**
 	 * This function takes as a parameter the city name entered by the user and
 	 * returns an list of countries this city is found in as well as the country
 	 * code.
@@ -31,15 +32,15 @@ public class CityDao extends Utilities implements RowMapper {
 	 * @param cityName
 	 *            the name of the city user enters
 	 * 
-	 */
-	public CityDto getCountryByCityName(String cityName) {
+	 *//*
+	public City getCountryByCityName(String cityName) {
 		cityName = cityName.toLowerCase();
 		cityName = cityName.substring(0, 1).toUpperCase() + cityName.substring(1);
 
 		this.setParams(new Object[] { new String(cityName) });
 
 		ResultSet rs = this.execute();
-		CityDto city = null;
+		City city = null;
 
 		try {
 			city = this.mapRow(rs);
@@ -50,8 +51,8 @@ public class CityDao extends Utilities implements RowMapper {
 	}
 
 	@Override
-	public CityDto mapRow(ResultSet resultSet) throws SQLException {
-		CityDto city = new CityDto();
+	public City mapRow(ResultSet resultSet) throws SQLException {
+		City city = new City();
 		List<String> listOfCountryCodes = new ArrayList<>();
 		List<String> listOfCityNames = new ArrayList<>();
 		
@@ -64,3 +65,4 @@ public class CityDao extends Utilities implements RowMapper {
 		return city;
 	}
 }
+*/

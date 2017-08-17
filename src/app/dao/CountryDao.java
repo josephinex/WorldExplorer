@@ -1,4 +1,5 @@
-package dao;
+package app.dao;
+/*package app.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import dto.CountryDto;
+import app.entities.Country;
 import utils.RowMapper;
 import utils.Utilities;
 
@@ -24,17 +25,17 @@ public class CountryDao extends Utilities implements RowMapper{
 	}
 
 	
-	/**
+	*//**
 	 * This function returns a country name by country code.
 	 * 
 	 * @param countryCode entered by the user, for e.g. au, md.
 	 * @return
-	 */
-	public CountryDto fetchCountryByCountryCode(String countryCode) {
+	 *//*
+	public Country fetchCountryByCountryCode(String countryCode) {
 		countryCode = countryCode.toUpperCase();
 		this.setParams(new Object[] { new String(countryCode) });
 		ResultSet rs = this.execute();
-		CountryDto country = null;
+		Country country = null;
 
 		try {
 			country = this.mapRow(rs);
@@ -46,8 +47,8 @@ public class CountryDao extends Utilities implements RowMapper{
 
 
 	@Override
-	public CountryDto mapRow(ResultSet resultSet) throws SQLException {
-		CountryDto country = new CountryDto();
+	public Country mapRow(ResultSet resultSet) throws SQLException {
+		Country country = new Country();
 		List<String> listOfCountryNames = new ArrayList<>();
 		
 		while (resultSet.next()) {
@@ -57,3 +58,4 @@ public class CountryDao extends Utilities implements RowMapper{
 		return country;
 	}
 }
+*/
