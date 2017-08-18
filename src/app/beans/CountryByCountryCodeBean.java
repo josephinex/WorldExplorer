@@ -1,6 +1,7 @@
 package app.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -8,6 +9,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import app.entities.Country;
+import app.service.CountryRegistrationService;
 
 @ManagedBean(name = "country_by_countrycode", eager = true)
 @SessionScoped
@@ -15,21 +17,21 @@ public class CountryByCountryCodeBean implements Serializable {
 
 	private static final long serialVersionUID = 2132958178296290274L;
 
-	@ManagedProperty(value = "#{countryDao}")
-	//private CountryDao countryDao;
+	@ManagedProperty(value = "#{CountryRegistrationService}")
+	private CountryRegistrationService service;
 
 	private String countryCode;
 	private List<String> countryNames;
 	private String countryName;
 
-	/*public CountryDao getCountryDao() {
-		return countryDao;
+	public CountryRegistrationService getService() {
+		return service;
 	}
 
-	public void setCountryDao(CountryDao countryDao) {
-		this.countryDao = countryDao;
+	public void setService(CountryRegistrationService service) {
+		this.service = service;
 	}
-*/
+
 	public String getCountryName() {
 		return countryName;
 	}
@@ -54,9 +56,13 @@ public class CountryByCountryCodeBean implements Serializable {
 		this.countryNames = countryNames;
 	}
 
-	/*public void submit() {
-		Country country = countryDao.fetchCountryByCountryCode(countryCode);
-		setCountryNames(country.getCountryNames());
-	}*/
+	public void submit() {
+		List<Country> countries = service.getCountryRepository().findByCountryCode(getCountryCode().toUpperCase());
+		List<String> countryNames = new ArrayList<>();
+		for(Country c : countries) {
+			countryNames.add(c.getCountryName());
+		}
+		this.setCountryNames(countryNames);
+	}
 
 }
