@@ -48,8 +48,8 @@ public class CountryByCityNameBean implements Serializable {
 	}
 
 	public void submit() {
-
-		List<Country> countries = service.getCountryRepository().findByCityName(getCityName());
+		String cityName = getCityName().substring(0,1).toUpperCase() + getCityName().substring(1);
+		List<Country> countries = service.getCountryRepository().findByCityName(cityName);
 
 		List<String> countryCodes = new ArrayList<>();
 
