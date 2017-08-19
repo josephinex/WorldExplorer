@@ -28,8 +28,8 @@
 			<h:commandButton class="btn left" value="Send" action="#{country_by_cityname.submit}" />
 		</p>
 		
-		 <ul class="listContainer" style="#{not empty country_by_cityname.countryCodes ? 'display: table-cell' : ''}">
-			<ui:repeat value="#{country_by_cityname.countryCodes}" var="item">
+		 <ul class="listContainer" style="#{not empty country_by_cityname.countryNames ? 'display: table-cell' : ''}">
+			<ui:repeat value="#{country_by_cityname.countryNames}" var="item">
 				<li>#{item}, #{country_by_cityname.cityName}</li>
 			</ui:repeat>
 		</ul> 
