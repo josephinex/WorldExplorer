@@ -21,7 +21,7 @@ public class CountryByCityNameBean implements Serializable {
 	private CountryRegistrationService service;
 
 	private String cityName;
-	private List<String> countryCodes;
+	private List<String> countryNames;
 
 	public CountryRegistrationService getService() {
 		return service;
@@ -39,25 +39,25 @@ public class CountryByCityNameBean implements Serializable {
 		this.cityName = cityName;
 	}
 
-	public List<String> getCountryCodes() {
-		return countryCodes;
+	public List<String> getCountryNames() {
+		return countryNames;
 	}
 
-	public void setCountryCodes(List<String> countryCodes) {
-		this.countryCodes = countryCodes;
+	public void setCountryNames(List<String> countryNames) {
+		this.countryNames = countryNames;
 	}
 
 	public void submit() {
 		String cityName = getCityName().substring(0,1).toUpperCase() + getCityName().substring(1);
 		List<Country> countries = service.getCountryRepository().findByCityName(cityName);
 
-		List<String> countryCodes = new ArrayList<>();
+		List<String> countryNames = new ArrayList<>();
 
 		for (Country c : countries) {
-			countryCodes.add(c.getCountryName());
+			countryNames.add(c.getCountryName());
 		}
 
-		setCountryCodes(countryCodes);
+		setCountryNames(countryNames);
 	}
 
 }
