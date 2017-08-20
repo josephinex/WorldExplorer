@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import app.dto.CityDto;
 import app.repositories.CityRepository;
 
 @Service(value="CityRegistrationService")
@@ -19,6 +20,5 @@ public class CityRegistrationService {
 	public void setCityRepository(CityRepository cityRepository) {
 		this.cityRepository = cityRepository;
 	}
-
 	
 }
