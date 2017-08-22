@@ -1,8 +1,11 @@
 package app.dto;
 
+import java.io.Serializable;
+
 import app.entities.Country;
 
-public class CityDto {
+public class CityDto implements Serializable {
+	
 	private Long id;
 
 	private String cityName;
