@@ -1,6 +1,5 @@
 package app.entities;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "countries")
-public class Country implements Serializable{
+public class Country{
 
 	@Id
 	@GeneratedValue

@@ -1,9 +1,13 @@
 package app.dto;
 
+import java.io.Serializable;
 import java.util.List;
 import app.entities.City;
 
-public class CountryDto {
+public class CountryDto implements Serializable {
+
+	private static final long serialVersionUID = 2093728751637564065L;
+
 	private Long id;
 
 	private String countryCodeIso;
