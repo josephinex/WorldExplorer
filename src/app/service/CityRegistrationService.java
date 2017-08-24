@@ -22,13 +22,8 @@ public class CityRegistrationService {
 		List<CityDto> list = new ArrayList<>(originalList.size());
 
 		// mapping from city to citydto
-
 		for (City city : originalList) {
-			CityDto cityDto = new CityDto();
-			cityDto.setCityName(city.getCityName());
-			cityDto.setCountry(city.getCountry());
-			cityDto.setCountryCode(city.getCountryCode());
-			list.add(cityDto);
+			list.add(Utils.mapCityToDto(city));
 		}
 
 		return list;

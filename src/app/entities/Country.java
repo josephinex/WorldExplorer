@@ -1,5 +1,6 @@
 package app.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "countries")
-public class Country{
+public class Country implements Serializable {
 
 	@Id
 	@GeneratedValue
@@ -46,10 +47,6 @@ public class Country{
 
 	public void setCities(List<City> cities) {
 		this.cities = cities;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public void setCountryCodeIso(String countryCodeIso) {

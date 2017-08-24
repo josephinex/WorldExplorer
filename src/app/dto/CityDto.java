@@ -2,17 +2,16 @@ package app.dto;
 
 import java.io.Serializable;
 
-import app.entities.Country;
-
 public class CityDto implements Serializable {
-	
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 
 	private String cityName;
 
 	public String countryCode;
 
-	private Country country;
+	private CountryDto country;
 
 	public long getId() {
 		return id;
@@ -26,11 +25,11 @@ public class CityDto implements Serializable {
 		return cityName;
 	}
 
-	public Country getCountry() {
+	public CountryDto getCountry() {
 		return country;
 	}
 
-	public void setCountry(Country country) {
+	public void setCountry(CountryDto country) {
 		this.country = country;
 	}
 

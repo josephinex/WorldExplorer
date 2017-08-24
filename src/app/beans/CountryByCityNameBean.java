@@ -57,7 +57,8 @@ public class CountryByCityNameBean implements Serializable {
 			countryNames.add(c.getCountryName());
 		}
 
-		setCountryNames(countryNames);
+		this.setCityName(cityName);
+		this.setCountryNames(countryNames);
 	}
 
 }

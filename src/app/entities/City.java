@@ -1,6 +1,8 @@
 package app.entities;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cities")
-public class City {
+public class City  implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")

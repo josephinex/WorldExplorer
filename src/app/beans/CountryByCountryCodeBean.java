@@ -9,14 +9,12 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 import app.dto.CountryDto;
-import app.entities.Country;
 import app.service.CountryRegistrationService;
 
 @ManagedBean(name = "country_by_countrycode", eager = true)
 @SessionScoped
 public class CountryByCountryCodeBean implements Serializable {
 
-	private static final long serialVersionUID = 2132958178296290274L;
 
 	@ManagedProperty(value = "#{CountryRegistrationService}")
 	private CountryRegistrationService service;
@@ -60,9 +58,11 @@ public class CountryByCountryCodeBean implements Serializable {
 	public void submit() {
 		List<CountryDto> countries = service.findByCountryCode(getCountryCode().toUpperCase());
 		List<String> countryNames = new ArrayList<>();
+		
 		for(CountryDto c : countries) {
 			countryNames.add(c.getCountryName());
 		}
+		
 		this.setCountryNames(countryNames);
 	}
 
