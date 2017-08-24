@@ -1,52 +1,33 @@
-package app.entities;
+package app.dto;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+public class CountryDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-@Entity
-@Table(name = "countries")
-public class Country implements Serializable {
-
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
 	private Long id;
-	
-	/*@Column(name = "region_id")
-	private Long regionId;*/
-	
-	/*@Column(name = "subregion_id")
-	private String subregionId;*/
 
-	@Column(name = "country_code_iso")
 	private String countryCodeIso;
 
-	@Column(name = "country_name")
 	private String countryName;
 
-	@Column(name = "tld")
 	private String topLevelDomain;
 
-	@Column(name = "country_code", nullable = false)
 	private String countryCode;
-	
-	@OneToMany(mappedBy="country")
-	private List<City> cities;
-	
 
-	public List<City> getCities() {
+	private List<CityDto> cities;
+
+	public List<CityDto> getCities() {
 		return cities;
 	}
 
-	public void setCities(List<City> cities) {
+	public void setCities(List<CityDto> cities) {
 		this.cities = cities;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setCountryCodeIso(String countryCodeIso) {

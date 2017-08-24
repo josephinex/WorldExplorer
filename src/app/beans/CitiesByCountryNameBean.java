@@ -8,12 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import app.entities.City;
+import app.dto.CityDto;
 import app.service.CityRegistrationService;
 
 @ManagedBean(name = "cities_by_countryname", eager = true)
 @ViewScoped
-public class CitiesByCountryNameBean implements Serializable {
+public class CitiesByCountryNameBean implements Serializable{
 	
 	private static final long serialVersionUID = 4272845871439410995L;
 
@@ -52,11 +52,12 @@ public class CitiesByCountryNameBean implements Serializable {
 	public void submit() {
 
 		String countryName = getCountryName().substring(0,1).toUpperCase() + getCountryName().substring(1);
-		List<City> cities = service.getCityRepository().findByCountryName(countryName);
+		List<CityDto> cities = service.findByCountryName(countryName);
+		
 
 		List<String> cityNames = new ArrayList<>();
 
-		for (City city : cities) {
+		for (CityDto city : cities) {
 			cityNames.add(city.getCityName());
 		}
 

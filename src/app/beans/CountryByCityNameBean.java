@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import app.entities.Country;
+import app.dto.CountryDto;
 import app.service.CountryRegistrationService;
 
 @ManagedBean(name = "country_by_cityname", eager = true)
@@ -49,15 +49,16 @@ public class CountryByCityNameBean implements Serializable {
 
 	public void submit() {
 		String cityName = getCityName().substring(0,1).toUpperCase() + getCityName().substring(1);
-		List<Country> countries = service.getCountryRepository().findByCityName(cityName);
+		List<CountryDto> countries = service.findByCityName(cityName);
 
 		List<String> countryNames = new ArrayList<>();
 
-		for (Country c : countries) {
+		for (CountryDto c : countries) {
 			countryNames.add(c.getCountryName());
 		}
 
-		setCountryNames(countryNames);
+		this.setCityName(cityName);
+		this.setCountryNames(countryNames);
 	}
 
 }
