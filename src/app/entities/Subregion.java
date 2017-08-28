@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Subregion  implements Serializable {
+public class Subregion implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
