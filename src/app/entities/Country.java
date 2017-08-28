@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "countries")
-public class Country implements Serializable {
+public class Country implements Serializable{
 
 	@Id
 	@GeneratedValue

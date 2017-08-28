@@ -4,32 +4,24 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-import app.dto.CountryDto;
-import app.service.CountryRegistrationService;
+import app.entities.Country;
+import app.repositories.CountryRepository;
 
-@ManagedBean(name = "country_by_cityname", eager = true)
+@Named("country_by_cityname")
 @RequestScoped
 public class CountryByCityNameBean implements Serializable {
 
 	private static final long serialVersionUID = 4191174360088849685L;
 
-	@ManagedProperty(value = "#{CountryRegistrationService}")
-	private CountryRegistrationService service;
+	@Inject
+	private CountryRepository countryRepository;
 
 	private String cityName;
 	private List<String> countryNames;
-
-	public CountryRegistrationService getService() {
-		return service;
-	}
-
-	public void setService(CountryRegistrationService service) {
-		this.service = service;
-	}
 
 	public String getCityName() {
 		return cityName;
@@ -49,11 +41,11 @@ public class CountryByCityNameBean implements Serializable {
 
 	public void submit() {
 		String cityName = getCityName().substring(0,1).toUpperCase() + getCityName().substring(1);
-		List<CountryDto> countries = service.findByCityName(cityName);
+		List<Country> countries = countryRepository.findByCityName(cityName);
 
 		List<String> countryNames = new ArrayList<>();
 
-		for (CountryDto c : countries) {
+		for (Country c : countries) {
 			countryNames.add(c.getCountryName());
 		}
 
